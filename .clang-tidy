@@ -1,0 +1,11 @@
+Checks: >
+  -*,
+  modernize-*,
+  readability-*,-readability-braces-around-statements,-readability-avoid-const-params-in-decls,
+  performance-*,
+  bugprone-*,-bugprone-easily-swappable-parameters,
+  cppcoreguidelines-*,
+WarningsAsErrors: >
+  misc-unused-parameters
+HeaderFilterRegex: '.*'
+FormatStyle: file
