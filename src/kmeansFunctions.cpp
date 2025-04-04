@@ -10,13 +10,8 @@
 #include <string>
 #include <vector>
 
-#include <filesystem>
-
 auto readDataPoints(const std::string &fileName, const char delimiter, const std::uint16_t colCount) -> std::vector<std::vector<double>>
 {
-	// std::filesystem::current_path(std::filesystem::current_path().parent_path());
-	std::cout << "Current working directory: " << std::filesystem::current_path() << "\n";
-
 	std::vector<std::vector<double>> data_;
 	std::ifstream                    file{fileName};
 

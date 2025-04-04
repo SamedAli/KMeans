@@ -27,8 +27,8 @@ endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(KMeansCPP
-    KMeansCPP.cpp
-    kmeansFunctions.cpp    
+    src/KMeansCPP.cpp
+    src/kmeansFunctions.cpp    
 )
 
 # Platform-specific configurations
