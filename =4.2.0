@@ -1,0 +1,159 @@
+Channels:
+ - defaults
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/samed/miniconda3/envs/python-playground
+
+  added / updated specs:
+    - nbformat
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    attrs-24.3.0               |  py313h06a4308_0         175 KB
+    jsonschema-4.23.0          |  py313h06a4308_0         188 KB
+    jsonschema-specifications-2023.7.1|  py313h06a4308_0          15 KB
+    nbformat-5.10.4            |  py313h06a4308_0         151 KB
+    python-fastjsonschema-2.20.0|  py313h06a4308_0         247 KB
+    referencing-0.30.2         |  py313h06a4308_0          74 KB
+    rpds-py-0.22.3             |  py313h4aa5aa6_0         371 KB
+    ------------------------------------------------------------
+                                           Total:         1.2 MB
+
+The following NEW packages will be INSTALLED:
+
+  attrs              pkgs/main/linux-64::attrs-24.3.0-py313h06a4308_0 
+  jsonschema         pkgs/main/linux-64::jsonschema-4.23.0-py313h06a4308_0 
+  jsonschema-specif~ pkgs/main/linux-64::jsonschema-specifications-2023.7.1-py313h06a4308_0 
+  nbformat           pkgs/main/linux-64::nbformat-5.10.4-py313h06a4308_0 
+  python-fastjsonsc~ pkgs/main/linux-64::python-fastjsonschema-2.20.0-py313h06a4308_0 
+  referencing        pkgs/main/linux-64::referencing-0.30.2-py313h06a4308_0 
+  rpds-py            pkgs/main/linux-64::rpds-py-0.22.3-py313h4aa5aa6_0 
+
+
+Proceed ([y]/n)? 
+
+Downloading and Extracting Packages: ...working...rpds-py-0.22.3       | 371 KB    |            |   0% 
+python-fastjsonschem | 247 KB    |            |   0% [A
+
+jsonschema-4.23.0    | 188 KB    |            |   0% [A[A
+
+
+attrs-24.3.0         | 175 KB    |            |   0% [A[A[A
+
+
+
+nbformat-5.10.4      | 151 KB    |            |   0% [A[A[A[A
+
+
+
+
+referencing-0.30.2   | 74 KB     |            |   0% [A[A[A[A[A
+
+
+
+
+
+jsonschema-specifica | 15 KB     |            |   0% [A[A[A[A[A[A
+
+
+
+nbformat-5.10.4      | 151 KB    | #          |  11% [A[A[A[A
+
+
+attrs-24.3.0         | 175 KB    | 9          |   9% [A[A[Arpds-py-0.22.3       | 371 KB    | 4          |   4% 
+python-fastjsonschem | 247 KB    | 6          |   6% [A
+
+
+
+nbformat-5.10.4      | 151 KB    | ########## | 100% [A[A[A[A
+
+
+attrs-24.3.0         | 175 KB    | ########## | 100% [A[A[A
+python-fastjsonschem | 247 KB    | ########## | 100% [Arpds-py-0.22.3       | 371 KB    | ########## | 100% 
+
+
+
+
+
+jsonschema-specifica | 15 KB     | ########## | 100% [A[A[A[A[A[A
+
+
+
+
+
+jsonschema-specifica | 15 KB     | ########## | 100% [A[A[A[A[A[A
+
+
+attrs-24.3.0         | 175 KB    | ########## | 100% [A[A[A
+
+
+attrs-24.3.0         | 175 KB    | ########## | 100% [A[A[A
+
+jsonschema-4.23.0    | 188 KB    | 8          |   8% [A[A
+python-fastjsonschem | 247 KB    | ########## | 100% [A
+python-fastjsonschem | 247 KB    | ########## | 100% [Arpds-py-0.22.3       | 371 KB    | ########## | 100% rpds-py-0.22.3       | 371 KB    | ########## | 100% 
+
+
+
+nbformat-5.10.4      | 151 KB    | ########## | 100% [A[A[A[A
+
+
+
+nbformat-5.10.4      | 151 KB    | ########## | 100% [A[A[A[A
+
+
+
+
+
+jsonschema-specifica | 15 KB     | ########## | 100% [A[A[A[A[A[A
+
+jsonschema-4.23.0    | 188 KB    | ########## | 100% [A[A
+
+jsonschema-4.23.0    | 188 KB    | ########## | 100% [A[A
+
+
+
+
+referencing-0.30.2   | 74 KB     | ##1        |  22% [A[A[A[A[A
+
+
+
+
+referencing-0.30.2   | 74 KB     | ########## | 100% [A[A[A[A[A
+
+
+
+
+referencing-0.30.2   | 74 KB     | ########## | 100% [A[A[A[A[A                                                     
+                                                     [A
+
+                                                     [A[A
+
+
+                                                     [A[A[A
+
+
+
+                                                     [A[A[A[A
+
+
+
+
+                                                     [A[A[A[A[A
+
+
+
+
+
+                                                     [A[A[A[A[A[A done
+Preparing transaction: - done
+Verifying transaction: | done
+Executing transaction: - done

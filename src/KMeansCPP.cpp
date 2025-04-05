@@ -1,6 +1,7 @@
 #include "kmeansFunctions.h"
 
 #include <filesystem>
+#include <iostream>
 
 /*
 1 Decide how many clusters you want, i.e. choose k
@@ -12,11 +13,11 @@
 */
 auto main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) -> int
 {
-	const std::uint16_t nofClusters   = 3;
-	const std::uint16_t nofIterations = 100;
+	const std::uint16_t nofClusters   = 6;
+	const std::uint16_t nofIterations = 10'000;
 
 	std::vector<std::uint16_t> dataPointsClusterNumber;
-	const std::string          filename_  = std::filesystem::path("assets") / "data.csv";
+	const std::string          filename_  = std::filesystem::path("assets") / "data2.csv";
 	const char                 delimiter_ = ',';
 
 	const auto dataPoints_ = readDataPoints(filename_, delimiter_);
@@ -26,7 +27,20 @@ auto main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) -> int
 
 	for (std::size_t i = 0; i < nofIterations; ++i)
 	{
+		std::cout << "# Iteration: " << i << "\n";
+
 		assignClusters(dataPoints_, centroids_, dataPointsClusterNumber);
-		break;
+		recalculateCentroids(dataPoints_, dataPointsClusterNumber, centroids_);
+
+		for (auto &centroid : centroids_)
+		{
+			for (double idx : centroid)
+			{
+				std::cout << idx << " ";
+			}
+			std::cout << "\n";
+		}
 	}
+
+	dumpToCSV(centroids_, std::filesystem::path("assets") / "centroids.csv");
 }

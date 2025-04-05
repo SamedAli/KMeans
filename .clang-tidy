@@ -7,5 +7,5 @@ Checks: >
   cppcoreguidelines-*,
 WarningsAsErrors: >
   misc-unused-parameters
-HeaderFilterRegex: '.*'
+HeaderFilterRegex: '../(src|include)/.*'
 FormatStyle: file

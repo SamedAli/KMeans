@@ -6,7 +6,9 @@
 #include <iosfwd>
 #include <iostream>
 #include <limits>
+#include <numeric>
 #include <random>
+#include <ranges>
 #include <string>
 #include <vector>
 
@@ -49,6 +51,32 @@ auto readDataPoints(const std::string &fileName, const char delimiter, const std
 	return data_;
 }
 
+auto dumpToCSV(const std::vector<std::vector<double>> &centroids, const std::string &fileName) -> void
+{
+	std::ofstream file_(fileName);
+
+	if (!file_.is_open())
+	{
+		std::cerr << "Failed to write: " << fileName << "\n";
+		return;
+	}
+
+	for (const auto &row : centroids)
+	{
+		for (size_t j = 0; j < row.size(); ++j)
+		{
+			file_ << row[j];
+
+			if (j < row.size() - 1)
+			{
+				file_ << ",";
+			}
+		}
+
+		file_ << "\n";
+	}
+}
+
 auto initializeCentroids(const std::vector<std::vector<double>> &dataPoints, const std::uint16_t nofClusters, const std::uint16_t seed) -> std::vector<std::vector<double>>
 {
 	std::mt19937 randomGenerator_{seed};
@@ -88,20 +116,46 @@ auto assignClusters(const std::vector<std::vector<double>> &dataPoints, const st
 	}
 }
 
-auto calculateDistance(const std::vector<double> &datapoints, const std::vector<double> &cluster) -> double
+auto calculateDistance(const std::vector<double> &datapoints, const std::vector<double> &centroids) -> double
 {
-	assert((datapoints.size() == cluster.size()) && "Vectors must have the same dimensions!");
+	assert((datapoints.size() == centroids.size()) && "Dimensions must be the same!");
 
 	double sum_ = 0.0;
 	for (size_t i = 0; i < datapoints.size(); ++i)
 	{
-		sum_ += (datapoints[i] - cluster[i]) * (datapoints[i] - cluster[i]);
+		sum_ += (datapoints[i] - centroids[i]) * (datapoints[i] - centroids[i]);
 	}
 
 	return std::sqrt(sum_);
 }
 
-auto recalculateCentroids([[maybe_unused]] const std::vector<std::vector<double>> &dataPoints, [[maybe_unused]] const std::vector<double> &cluster, [[maybe_unused]] std::vector<std::vector<double>> &centroids) -> double
+auto recalculateCentroids(const std::vector<std::vector<double>> &dataPoints, const std::vector<std::uint16_t> &cluster, std::vector<std::vector<double>> &centroids) -> void
 {
-	return 0;
+	for (size_t i = 0; i < centroids.size(); i++) // get cluster numbers
+	{
+		std::vector<double> zero_(dataPoints[0].size(), 0.0);
+
+		auto indices_ = std::views::iota(size_t{0}, cluster.size()) | std::views::filter(
+		                                                                  [&cluster, i](size_t idx) {
+			                                                                  return cluster[idx] == i;
+		                                                                  });
+
+		auto sum_ = std::accumulate(indices_.begin(),
+		                            indices_.end(),
+		                            zero_,
+		                            [&dataPoints](std::vector<double> accumulate, size_t idx) {
+			                            for (size_t i = 0; i < accumulate.size(); i++)
+			                            {
+				                            accumulate[i] += dataPoints[idx][i];
+			                            }
+
+			                            return accumulate;
+		                            });
+
+		auto size_ = static_cast<double>(std::ranges::distance(indices_));
+		for (size_t idx = 0; idx < centroids[0].size(); ++idx)
+		{
+			centroids[i][idx] = sum_[idx] / size_;
+		}
+	}
 }
