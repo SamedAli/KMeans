@@ -96,6 +96,8 @@ auto initializeCentroids(const std::vector<std::vector<double>> &dataPoints, con
 
 auto assignClusters(const std::vector<std::vector<double>> &dataPoints, const std::vector<std::vector<double>> &centroids, std::vector<std::uint16_t> &clusters) -> void
 {
+	std::cout << "\t# Assigning Clusters\n";
+
 	for (size_t i = 0; i < dataPoints.size(); ++i)
 	{
 		double        minDistance_ = std::numeric_limits<double>::max();
@@ -129,8 +131,15 @@ auto calculateDistance(const std::vector<double> &datapoints, const std::vector<
 	return std::sqrt(sum_);
 }
 
-auto recalculateCentroids(const std::vector<std::vector<double>> &dataPoints, const std::vector<std::uint16_t> &cluster, std::vector<std::vector<double>> &centroids) -> void
+auto recalculateCentroids(const std::vector<std::vector<double>> &dataPoints, const std::vector<std::uint16_t> &cluster, std::vector<std::vector<double>> &centroids) -> std::vector<std::vector<double>>
 {
+	std::cout << "\t# Recalculating centroids: \n";
+
+	const size_t                     numCentroids_ = centroids.size();
+	const size_t                     numDimension_ = centroids[0].size();
+	std::vector<std::vector<double>> newCentroids_{};
+	newCentroids_.resize(numCentroids_, std::vector<double>(numDimension_, 0.0));
+
 	for (size_t i = 0; i < centroids.size(); i++) // get cluster numbers
 	{
 		std::vector<double> zero_(dataPoints[0].size(), 0.0);
@@ -155,7 +164,9 @@ auto recalculateCentroids(const std::vector<std::vector<double>> &dataPoints, co
 		auto size_ = static_cast<double>(std::ranges::distance(indices_));
 		for (size_t idx = 0; idx < centroids[0].size(); ++idx)
 		{
-			centroids[i][idx] = sum_[idx] / size_;
+			newCentroids_[i][idx] = sum_[idx] / size_;
 		}
 	}
+
+	return newCentroids_;
 }

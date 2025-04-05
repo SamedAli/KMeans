@@ -27,20 +27,23 @@ auto main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) -> int
 
 	for (std::size_t i = 0; i < nofIterations; ++i)
 	{
+		bool centroidsChanged_ = false;
 		std::cout << "# Iteration: " << i << "\n";
 
 		assignClusters(dataPoints_, centroids_, dataPointsClusterNumber);
-		recalculateCentroids(dataPoints_, dataPointsClusterNumber, centroids_);
+		auto newCentroids_ = recalculateCentroids(dataPoints_, dataPointsClusterNumber, centroids_);
 
-		for (auto &centroid : centroids_)
+		if (!(centroids_ == newCentroids_))
 		{
-			for (double idx : centroid)
-			{
-				std::cout << idx << " ";
-			}
-			std::cout << "\n";
+			centroids_        = std::move(newCentroids_);
+			centroidsChanged_ = true;
 		}
+
+		if (!centroidsChanged_)
+			break;
 	}
 
+	std::cout << "# Writing to file.\n";
 	dumpToCSV(centroids_, std::filesystem::path("assets") / "centroids.csv");
+	std::cout << "# Done.\n";
 }

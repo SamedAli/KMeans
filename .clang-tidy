@@ -5,6 +5,8 @@ Checks: >
   performance-*,
   bugprone-*,-bugprone-easily-swappable-parameters,
   cppcoreguidelines-*,
+  clang-analyzer-core-*,
+  clang-analyzer-deadcode.DeadStores
 WarningsAsErrors: >
   misc-unused-parameters
 HeaderFilterRegex: '../(src|include)/.*'
